@@ -1,6 +1,5 @@
 import React from "react";
 
-import {BrowserRouter,Route,Switch} from 'react-router-dom'
 
 import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
 import "font-awesome/css/font-awesome.css";
@@ -26,7 +25,6 @@ import Navbar from "./components/navbar";
 import Button from "@material-ui/core/Button";
 import IconButton from '@material-ui/core/IconButton';
 import ReactTooltip from "react-tooltip";
-import { BrowserRouter } from 'react-do';
 
 const { hostIdentifier, searchKey, endpointBase, engineName } = getConfig();
 
@@ -49,9 +47,7 @@ const config = {
 
 export default function App() {
   return (
-    <BrowserRouter>
     <div>
-      <Navbar classes="Login" />
       <SearchProvider config={config}>
         <WithSearch
           mapContextToProps={({ searchTerm, setSearchTerm, results }) => ({
@@ -116,6 +112,5 @@ export default function App() {
         </WithSearch>
       </SearchProvider>
       </div>
-      </BrowserRouter>
   );
 }

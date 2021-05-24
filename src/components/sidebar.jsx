@@ -18,6 +18,12 @@ class Sidebar extends Component {
                     </ul>
                     </p>
                 }
+                {
+                    !selectedNode &&
+                    <p>
+                        Nothing selected..
+                    </p>
+                }
         </div>            
          );
     }

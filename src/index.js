@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import './static/style.css';
-import Plan from './components/plan';
+import RoutedApp from './RoutedApp';
 
-
-ReactDOM.render(<Plan />, document.getElementById("root"));
+ReactDOM.render(<RoutedApp />, document.getElementById("root"));

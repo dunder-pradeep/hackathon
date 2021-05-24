@@ -98,7 +98,6 @@ class Plan extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar></Navbar>
         <div className="graphbody">
           <div className="graphContainer">
             <GraphWrap
