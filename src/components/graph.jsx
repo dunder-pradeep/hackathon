@@ -1,66 +1,53 @@
+import ReactDOM from "react-dom";
+import Graph from "react-graph-vis";
+
 import React, { Component } from 'react';
-
-import { Graph } from "react-d3-graph";
-
-const data = {
-    nodes: [{ id: "Harry" }, { id: "Sally" }, { id: "Alice" }],
-    links: [
-      { source: "Harry", target: "Sally" },
-        { source: "Harry", target: "Alice" },
-
-    ],
-    focusedNodeId: "nodeIdToTriggerZoomAnimation"
-
-  };
+import { node } from "prop-types";
+// need to import the vis network css in order to show tooltip
 
 
-  const myConfig = {
-      nodeHighlightBehavior: true,
-      maxZoom: 8,
-      minZoom:0.1,
-      width: 800,
-      focusZoom: 1,
-      directed: true,
-      collapsible: false,
-      automaticRearrangeAfterDropNode: false,
-      freezeAllDragEvents: false,
-      panAndZoom: false,
-    node: {
-      color: "lightgreen",
-      size: 250,
-      highlightStrokeColor: "blue",
-    },
-    link: {
-      highlightColor: "lightblue",
-    },
-};
-  
-const onClickNode = function(nodeId) {
-    window.alert(`Clicked node ${nodeId}`);
-  };
-  
-  const onClickLink = function(source, target) {
-    window.alert(`Clicked link between ${source} and ${target}`);
-};
-  
-const onZoomChange = function(previousZoom, newZoom) {
-    window.alert(`Graph is now zoomed at ${newZoom} from ${previousZoom}`);
+
+const options = {
+  layout: {
+    hierarchical: false
+  },
+  nodes: {
+    color: "#3a56e4",
+    shape: 'circle',
+    size:100,
+  },
+  edges: {
+    color: "#000000",
+    width:1
+  },
+  height: "1000px"
 };
 
-class GraphWrap extends Component {
-    state = {  }
-    render() { 
-        return (
-            <Graph
-  id="graph-id" // id is mandatory
-  data={data}
-  config={myConfig}
-  onClickNode={onClickNode}
-                onClickLink={onClickLink}
-                onZoomChange={onZoomChange}
-/>
-         );
-    }
+
+class GraphWrap extends Component{
+  state = {}
+
+  render() {
+    const onSelect = this.props.onSelect;
+    const events = {
+      select: function(event) {
+        var { nodes, edges } = event;
+        onSelect(nodes[0]);
+      }
+    };
+    
+    return (
+      <Graph
+        graph={this.props.graph}
+        options={options}
+        events={events}
+        getNetwork={network => {
+          //  if you want access to vis.js network api you can set the state in a parent component using this property
+        }}
+      
+      />
+    );
+  
+  }
 }
- 
 export default GraphWrap;

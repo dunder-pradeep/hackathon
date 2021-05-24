@@ -69,3 +69,19 @@ input[type=text] {
 
 .searchButton{
 }
+
+.graphContainer{
+    width: 80%;
+}
+.graphbody{
+    display: flex;
+
+}
+.sidebar{
+    width: 20%;
+    height: 800px;
+    border-width: 1px;
+    border-color: #3a56e4;
+    border-style: solid;
+    margin: 10px;
+}
