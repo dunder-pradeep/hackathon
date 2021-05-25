@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import { Graph } from 'react-graph-vis';
+import React, { Component } from "react";
+
+import { Card, CardContent, CardHeader, CardMedia } from "@material-ui/core";
+  
 
 class Sidebar extends Component {
-    state = {
-     }
+  state = {};
     render() {
-        console.log(this.props);
-        const { selectedNode, graph } = this.props ;
-        const node = graph.nodes[selectedNode - 1];
-        return (
-            <div>
-                {selectedNode &&
-                    <p>
-                    <ul>
-                        <li>  UID : {node.id} </li>
-                        <li>  Course Name : {node.label} </li>
-                    </ul>
-                    </p>
-                }
-                {
-                    !selectedNode &&
-                    <p>
-                        Nothing selected..
-                    </p>
-                }
-        </div>            
-         );
-    }
+    
+    const { selectedNode, graph } = this.props;
+    const node = selectedNode && graph.nodes[selectedNode - 1];
+    return (
+      <div className='section-container'>
+        {selectedNode && (
+                    <Card>
+                        <CardHeader title={ node.title.raw}/>
+                         
+              <CardContent>
+                <ul>
+                  <li> UID : {node.id} </li>
+                  <li> Course Name : {node.title.raw} </li>
+                </ul>
+              </CardContent>
+            </Card>
+        )}
+        {!selectedNode && <CardContent>Nothing selected..</CardContent>}
+      </div>
+    );
+  }
 }
- 
+
 export default Sidebar;

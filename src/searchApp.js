@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { Component } from 'react';
 
 import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
 import "font-awesome/css/font-awesome.css";
@@ -9,7 +8,6 @@ import {
   SearchProvider,
   WithSearch,
 } from "@elastic/react-search-ui";
-import "@elastic/react-search-ui-views/lib/styles/styles.css";
 
 import {
   buildAutocompleteQueryConfig,
@@ -20,11 +18,11 @@ import {
   getFacetFields,
 } from "./config/config-helper";
 
-import BodyWrap from "./components/body_wrapper";
 import Navbar from "./components/navbar";
 import Button from "@material-ui/core/Button";
 import IconButton from '@material-ui/core/IconButton';
 import ReactTooltip from "react-tooltip";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 const { hostIdentifier, searchKey, endpointBase, engineName } = getConfig();
 
@@ -45,7 +43,26 @@ const config = {
   alwaysSearchOnInitialLoad: true,
 };
 
-export default function App() {
+
+class SearchApp extends Component {
+  state = {
+ 
+  }
+  
+  curgraph = [];
+
+handleClick = (event) => {
+  event.preventDefault();
+  let id = event.currentTarget.closest('div').attributes[2].value;
+  let foundNode = this.curgraph.find((obj, index) => {
+    if (obj.id.raw == id)
+      return true;
+  });
+  this.props.addNode(foundNode);
+}
+
+  render() {
+  
   return (
     <div>
       <SearchProvider config={config}>
@@ -72,22 +89,24 @@ export default function App() {
                     variant="contained"
                     color="secondary"
                     size="small"
-                    disableElevation
                   >
                     <Icon className="fa fa-search"/>
                   </IconButton>
                 </div>
                 <div className="resultsBody">
-                  {results.map((r) => (
-                    <div>
+                  {results.map((r, idx) => (
+                    <div key={idx}>
+                                                {console.log(r)}
+
+                      {this.curgraph.push(r) && null}
+
                       <div className="resultItem" key={r.id.raw} data-tip data-for={r.id.raw}>
-                      {r.title.raw}{" "}
-                        <IconButton size="small" variant="contained" color="secondary">
-                        <Icon className="fa fa-plus-circle" />
-
-
+                      {r.title.raw}
+                        <IconButton size="small" variant="contained" color="secondary" onClick={this.handleClick}>
+                          <Icon className="fa fa-plus-circle" />
+                          
                       </IconButton>{" "}
-                  
+
                       <ReactTooltip
                           place="right"
                           type="error"
@@ -98,8 +117,7 @@ export default function App() {
                           <p>Title : {r.title.raw}</p>
                           <p>UID: {r.id.raw}</p>
                           <p>Rating: {Math.round(r.rating.raw*100)/100}/10</p>
-
-                          {console.log(r)}
+                          <p>Price : {r.discount_price__amount.raw}</p>
                         </ReactTooltip>
                     </div>
                      
@@ -112,5 +130,7 @@ export default function App() {
         </WithSearch>
       </SearchProvider>
       </div>
-  );
+  );}
 }
+
+export default SearchApp;

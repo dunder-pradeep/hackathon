@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
+import ReactDOM from "react-dom";
 
 import {BrowserRouter,Route,Switch} from 'react-router-dom'
 
-import App from './searchApp';
-import Plan from './components/plan';
 import Navbar from './components/navbar';
+import App from './App';
 
 class RoutedApp extends Component {
-    state = {  }
+    state = {
+    }
+
     render() { 
         return (
             <BrowserRouter>
-                <Route path = '/' component={Navbar}/>
-                <Route path='/courses' component={App} />
-                <Route path='/planner' component={Plan}/>
-                
+                <Route path='/'  component={Navbar}/>
+                <Route path='/' component={App}/>
             </BrowserRouter>
          );
     }

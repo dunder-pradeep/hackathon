@@ -3,6 +3,21 @@ import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button'
 
+import { createMuiTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: purple[500],
+    },
+    secondary: {
+      main: '#f44336',
+    },
+  },
+});
+
+
 class Navbar extends Component {
     state = { isAuth:false }
     render() { 
