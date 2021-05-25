@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 //component imports
 import SearchApp from "./searchApp";
 import Plan from "./components/plan";
+import Home from './components/home';
 
 //helper functions..
 function getRandcolor() {
@@ -125,6 +126,8 @@ class App extends Component {
           path="/courses"
           render={() => <SearchApp addNode={this.updateGraphNode} />}
         />
+        <Route path='/home' component={Home} />
+        <Route path='/' exact component={Home}/>
       </React.Fragment>
     );
   }

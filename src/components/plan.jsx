@@ -21,7 +21,7 @@ const options = {
   },
   edges: {
     color: "#000000",
-    width: 1,
+    width: 0.5,
     selectionWidth: 0,
   },
   height: "800px",

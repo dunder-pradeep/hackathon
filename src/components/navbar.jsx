@@ -22,13 +22,14 @@ class Navbar extends Component {
     state = { isAuth:false }
     render() { 
         return (
-            <div className='navbar-container'>
+          <div className='navbar-container'>
+                            <Button color = 'primary'><Link to='/home'>Home</Link></Button>
+
                 <div className='authgroup'>
                 <Button color='primary'> <Link to='/courses'>Courses</Link></Button>
                 <Button color = 'primary'><Link to='/planner'>Plan</Link></Button>
                 </div>
                
-                <Button color = 'primary'><Link to='/home'>Home</Link></Button>
 
                 {this.state.isAuth &&
                     <div className='authgroup'>

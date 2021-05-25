@@ -80,7 +80,7 @@ handleClick = (event) => {
                   <input
                     className=""
                     type="text"
-                    placeholder="powered By ELASTICSEARCH"
+                    placeholder="powered By Elasticsearch"
                     required
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
